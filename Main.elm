@@ -171,8 +171,8 @@ divPage title description =
         ]
 
 
-audioTrack : String -> String -> Maybe String -> Html Msg
-audioTrack title filePath youtubeUrl =
+audioTrack : String -> String -> String -> Maybe String -> Html Msg
+audioTrack title filePath downloadName youtubeUrl =
     div
         [ style "margin-top" "24px"
         , style "padding" "16px"
@@ -191,7 +191,7 @@ audioTrack title filePath youtubeUrl =
             Nothing ->
                 text ""
 
-        , audioPlayer filePath
+        , audioPlayer filePath downloadName
         ]
 
 externalLink : String -> String -> Html Msg
@@ -203,8 +203,8 @@ externalLink url label =
         [ text label ]
 
 
-audioPlayer : String -> Html Msg
-audioPlayer filePath =
+audioPlayer : String -> String -> Html Msg
+audioPlayer filePath downloadName =
     div []
         [ audio
             [ controls True ]
@@ -217,7 +217,7 @@ audioPlayer filePath =
         , p []
             [ a
                 [ href filePath
-                , download "mp3"
+                , download downloadName
                 ]
                 [ text "Ladda ner MP3" ]
             ]
@@ -387,26 +387,31 @@ repertoarPage =
                 , audioTrack
                     "Brutal Truth – Ida Sand"
                     "audio/Brutal-Truth.mp3"
+                    "Brutal Truth - Ida Sand.mp3"
                     (Just "https://www.youtube.com/watch?v=CTMSUvsfHuM")
 
                 , audioTrack
                     "Cloudberry Jam"
                     "audio/Cloud-Berry-Jam.mp3"
+                    "Cloudberry Jam.mp3"
                     Nothing
 
                 , audioTrack
                     "I'll Remember April"
                     "audio/Ill-Remember-April.mp3"
+                    "I'll Remember April.mp3"
                     Nothing
 
                 , audioTrack
                     "Joyband – blåsorkesterversion"
                     "audio/Joyband.mp3"
+                    "Joyband.mp3"
                     Nothing
 
                 , audioTrack
                     "Love The One You're With"
                     "audio/Love-The-One.mp3"
+                    "Love The One You're With.mp3"
                     Nothing
                 ]
             ]
