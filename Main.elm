@@ -119,10 +119,12 @@ navView currentPage =
         [ style "font-family" "Arial"
         , style "display" "flex"
         , style "justify-content" "center"
-        , style "gap" "8px"
-        , style "padding" "20px"
+        , style "gap" "6px"
+        , style "padding" "16px 10px"
         , style "background-color" "#f4f1ec"
+        , style "flex-wrap" "wrap"
         ]
+
         [ navLink currentPage Home "#" "Start"
         , navLink currentPage Notes "#noter" "Noter"
         , navLink currentPage Repertoire "#repertoar" "Repertoar"
@@ -133,10 +135,10 @@ navLink : Page -> Page -> String -> String -> Html Msg
 navLink currentPage page url label =
     a
         [ href url
-        , style "padding" "10px 18px"
+        , style "padding" "14px 20px"
         , style "border-radius" "8px"
         , style "text-decoration" "none"
-        , style "font-size" "17px"
+        , style "font-size" "18px"
         , style "font-weight" "bold"
         , style "color"
             (if currentPage == page then
@@ -152,6 +154,7 @@ navLink currentPage page url label =
             )
         ]
         [ text label ]
+
 
 pageView : Page -> Html Msg
 pageView page =
