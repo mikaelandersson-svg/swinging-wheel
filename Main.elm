@@ -73,14 +73,14 @@ init _ url key =
 
 pageFromUrl : Url -> Page
 pageFromUrl url =
-    case url.path of
-        "/swinging-wheel/noter" ->
+    case url.fragment of
+        Just "noter" ->
             Notes
 
-        "/swinging-wheel/repertoar" ->
+        Just "repertoar" ->
             Repertoire
 
-        "/arkiv" ->
+        Just "arkiv" ->
             Archive
 
         _ ->
@@ -113,13 +113,13 @@ view model =
 navView : Html Msg
 navView =
     nav []
-        [ a [ href "/swinging-wheel" ] [ text "Start" ]
+        [ a [ href "#/" ] [ text "Start" ]
         , text " | "
-        , a [ href "./swinging-wheel/noter" ] [ text "Noter" ]
+        , a [ href "#noter" ] [ text "Noter" ]
         , text " | "
-        , a [ href "./swinging-wheel/repertoar" ] [ text "Repertoar" ]
+        , a [ href "#repertoar" ] [ text "Repertoar" ]
         , text " | "
-        , a [ href "/arkiv" ] [ text "Arkiv" ]
+        , a [ href "#arkiv" ] [ text "Arkiv" ]
         ]
 
 eventCard : String -> String -> String -> String -> Html Msg
