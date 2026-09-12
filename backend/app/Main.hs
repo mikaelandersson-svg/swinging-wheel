@@ -14,19 +14,19 @@ safeFilename filename =
 
 main :: IO ()
 main = scotty 3000 $ do
-    get "/" $ file "../frontend/index.html"
-    get "/noter" $ file "../frontend/index.html"
-    get "/repertoar" $ file "../frontend/index.html"
-    get "/arkiv" $ file "../frontend/index.html"
+    get "/" $ file "../index.html"
+    get "/noter" $ file "../index.html"
+    get "/repertoar" $ file "../index.html"
+    get "/arkiv" $ file "../index.html"
 
-    get "/elm.js" $ file "../frontend/elm.js"
+    get "/elm.js" $ file "../elm.js"
 
     get "/audio/:filename" $ do
         filename <- captureParam "filename"
         let name = Text.unpack filename
 
         if safeFilename name then
-            file $ "../frontend/audio/" ++ name
+            file $ "../audio/" ++ name
         else do
             status status404
             text "Invalid audio filename"
@@ -36,7 +36,7 @@ main = scotty 3000 $ do
         let name = Text.unpack filename
 
         if safeFilename name then do
-            file $ "../frontend/media/" ++ name
+            file $ "../media/" ++ name
             setHeader "Content-Type" "image/svg+xml"
         else do
             status status404
