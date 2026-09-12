@@ -5186,7 +5186,7 @@ var $author$project$Main$pageFromUrl = function (url) {
 			return $author$project$Main$Notes;
 		case '/swinging-wheel/repertoar':
 			return $author$project$Main$Repertoire;
-		case '/swinging-wheel/arkiv':
+		case '/arkiv':
 			return $author$project$Main$Archive;
 		default:
 			return $author$project$Main$Home;
@@ -5337,7 +5337,7 @@ var $author$project$Main$navView = A2(
 			$elm$html$Html$a,
 			_List_fromArray(
 				[
-					$elm$html$Html$Attributes$href('./swinging-wheel/arkiv')
+					$elm$html$Html$Attributes$href('/arkiv')
 				]),
 			_List_fromArray(
 				[
