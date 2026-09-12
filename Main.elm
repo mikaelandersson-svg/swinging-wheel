@@ -74,13 +74,13 @@ init _ url key =
 pageFromUrl : Url -> Page
 pageFromUrl url =
     case url.path of
-        "/noter" ->
+        "/swinging-wheel/noter" ->
             Notes
 
-        "/repertoar" ->
+        "/swinging-wheel/repertoar" ->
             Repertoire
 
-        "/arkiv" ->
+        "/swinging-wheel/arkiv" ->
             Archive
 
         _ ->
