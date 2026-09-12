@@ -113,13 +113,13 @@ view model =
 navView : Html Msg
 navView =
     nav []
-        [ a [ href "/" ] [ text "Start" ]
+        [ a [ href "/swinging-wheel" ] [ text "Start" ]
         , text " | "
-        , a [ href "/noter" ] [ text "Noter" ]
+        , a [ href "/swinging-wheel/noter" ] [ text "Noter" ]
         , text " | "
-        , a [ href "/repertoar" ] [ text "Repertoar" ]
+        , a [ href "/swinging-wheel/repertoar" ] [ text "Repertoar" ]
         , text " | "
-        , a [ href "/arkiv" ] [ text "Arkiv" ]
+        , a [ href "/swinging-wheel/arkiv" ] [ text "Arkiv" ]
         ]
 
 eventCard : String -> String -> String -> String -> Html Msg
@@ -372,8 +372,8 @@ repertoarPage =
                         , style "line-height" "0"
                         ]
                         [ img
-                            [ src "/media/spotifyikon.svg"
-                            , alt "Testelitus"
+                            [ src "media/spotifyikon.svg"
+                            , alt "Spotify"
                             , style "width" "52px"
                             , style "height" "52px"
                             ]
@@ -386,27 +386,27 @@ repertoarPage =
 
                 , audioTrack
                     "Brutal Truth – Ida Sand"
-                    "/audio/Brutal-Truth.mp3"
+                    "audio/Brutal-Truth.mp3"
                     (Just "https://www.youtube.com/watch?v=CTMSUvsfHuM")
 
                 , audioTrack
                     "Cloudberry Jam"
-                    "/audio/Cloud-Berry-Jam.mp3"
+                    "audio/Cloud-Berry-Jam.mp3"
                     Nothing
 
                 , audioTrack
                     "I'll Remember April"
-                    "/audio/Ill-Remember-April.mp3"
+                    "audio/Ill-Remember-April.mp3"
                     Nothing
 
                 , audioTrack
                     "Joyband – blåsorkesterversion"
-                    "/audio/Joyband.mp3"
+                    "audio/Joyband.mp3"
                     Nothing
 
                 , audioTrack
                     "Love The One You're With"
-                    "/audio/Love-The-One.mp3"
+                    "audio/Love-The-One.mp3"
                     Nothing
                 ]
             ]

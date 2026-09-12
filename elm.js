@@ -5930,7 +5930,7 @@ var $author$project$Main$repertoarPage = A2(
 									_List_fromArray(
 										[
 											$elm$html$Html$Attributes$src('/media/spotifyikon.svg'),
-											$elm$html$Html$Attributes$alt('Testelitus'),
+											$elm$html$Html$Attributes$alt('Spotify'),
 											A2($elm$html$Html$Attributes$style, 'width', '52px'),
 											A2($elm$html$Html$Attributes$style, 'height', '52px')
 										]),
