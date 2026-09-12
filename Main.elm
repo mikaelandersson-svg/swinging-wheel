@@ -113,7 +113,7 @@ view model =
 navView : Html Msg
 navView =
     nav []
-        [ a [ href "#/" ] [ text "Start" ]
+        [ a [ href "#" ] [ text "Start" ]
         , text " | "
         , a [ href "#noter" ] [ text "Noter" ]
         , text " | "

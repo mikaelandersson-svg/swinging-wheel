@@ -5180,17 +5180,25 @@ var $author$project$Main$Home = {$: 'Home'};
 var $author$project$Main$Notes = {$: 'Notes'};
 var $author$project$Main$Repertoire = {$: 'Repertoire'};
 var $author$project$Main$pageFromUrl = function (url) {
-	var _v0 = url.path;
-	switch (_v0) {
-		case '/swinging-wheel/noter':
-			return $author$project$Main$Notes;
-		case '/swinging-wheel/repertoar':
-			return $author$project$Main$Repertoire;
-		case '/arkiv':
-			return $author$project$Main$Archive;
-		default:
-			return $author$project$Main$Home;
+	var _v0 = url.fragment;
+	_v0$3:
+	while (true) {
+		if (_v0.$ === 'Just') {
+			switch (_v0.a) {
+				case 'noter':
+					return $author$project$Main$Notes;
+				case 'repertoar':
+					return $author$project$Main$Repertoire;
+				case 'arkiv':
+					return $author$project$Main$Archive;
+				default:
+					break _v0$3;
+			}
+		} else {
+			break _v0$3;
+		}
 	}
+	return $author$project$Main$Home;
 };
 var $author$project$Main$init = F3(
 	function (_v0, url, key) {
@@ -5304,7 +5312,7 @@ var $author$project$Main$navView = A2(
 			$elm$html$Html$a,
 			_List_fromArray(
 				[
-					$elm$html$Html$Attributes$href('/swinging-wheel')
+					$elm$html$Html$Attributes$href('#')
 				]),
 			_List_fromArray(
 				[
@@ -5315,7 +5323,7 @@ var $author$project$Main$navView = A2(
 			$elm$html$Html$a,
 			_List_fromArray(
 				[
-					$elm$html$Html$Attributes$href('./swinging-wheel/noter')
+					$elm$html$Html$Attributes$href('#noter')
 				]),
 			_List_fromArray(
 				[
@@ -5326,7 +5334,7 @@ var $author$project$Main$navView = A2(
 			$elm$html$Html$a,
 			_List_fromArray(
 				[
-					$elm$html$Html$Attributes$href('./swinging-wheel/repertoar')
+					$elm$html$Html$Attributes$href('#repertoar')
 				]),
 			_List_fromArray(
 				[
@@ -5337,7 +5345,7 @@ var $author$project$Main$navView = A2(
 			$elm$html$Html$a,
 			_List_fromArray(
 				[
-					$elm$html$Html$Attributes$href('/arkiv')
+					$elm$html$Html$Attributes$href('#arkiv')
 				]),
 			_List_fromArray(
 				[
