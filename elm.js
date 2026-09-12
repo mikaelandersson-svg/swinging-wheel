@@ -5285,6 +5285,7 @@ var $author$project$Main$update = F2(
 				$elm$core$Platform$Cmd$none);
 		}
 	});
+var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$a = _VirtualDom_node('a');
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
@@ -5352,7 +5353,6 @@ var $author$project$Main$navView = A2(
 					$elm$html$Html$text('Arkiv')
 				]))
 		]));
-var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$html$Html$p = _VirtualDom_node('p');
 var $author$project$Main$divPage = F2(
@@ -5453,6 +5453,7 @@ var $author$project$Main$externalLink = F2(
 					$elm$html$Html$text(label)
 				]));
 	});
+var $elm$html$Html$strong = _VirtualDom_node('strong');
 var $author$project$Main$homePage = A2(
 	$elm$html$Html$div,
 	_List_fromArray(
@@ -5552,28 +5553,56 @@ var $author$project$Main$homePage = A2(
 					_List_Nil,
 					_List_fromArray(
 						[
-							$elm$html$Html$text('Repetition – Torsdag 24 september 2026, kl. 19:00–21:15 (Kulturskolan / Christinaskolan, Piteå)')
+							A2(
+							$elm$html$Html$strong,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Repetetion')
+								])),
+							$elm$html$Html$text(' – Torsdag 24 september 2026, kl. 19:00–21:15 (Kulturskolan / Christinaskolan, Piteå)')
 						])),
 					A2(
 					$elm$html$Html$p,
 					_List_Nil,
 					_List_fromArray(
 						[
-							$elm$html$Html$text('Repetition – Lördag 10 oktober 2026, kl. 10:00–14:00 (Kulturskolan, Piteå)')
+							A2(
+							$elm$html$Html$strong,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Repetetion')
+								])),
+							$elm$html$Html$text(' – Lördag 10 oktober 2026, kl. 10:00–14:00 (Kulturskolan, Piteå)')
 						])),
 					A2(
 					$elm$html$Html$p,
 					_List_Nil,
 					_List_fromArray(
 						[
-							$elm$html$Html$text('Genrep med Ida – Torsdag 15 oktober 2026, kl. 19:00–21:30 (Storstrand, Öjebyn)')
+							A2(
+							$elm$html$Html$strong,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Genrep med Ida')
+								])),
+							$elm$html$Html$text(' – Torsdag 15 oktober 2026, kl. 19:00–21:30 (Storstrand, Öjebyn)')
 						])),
 					A2(
 					$elm$html$Html$p,
 					_List_Nil,
 					_List_fromArray(
 						[
-							$elm$html$Html$text('Spelning – Fredag 16 oktober 2026, kl. 19:00, samlingstid meddelas senare (Storstrand, Öjebyn)')
+							A2(
+							$elm$html$Html$strong,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Spelning')
+								])),
+							$elm$html$Html$text('– Fredag 16 oktober 2026, kl. 19:00, samlingstid meddelas senare (Storstrand, Öjebyn)')
 						])),
 					A2($author$project$Main$externalLink, 'https://www.facebook.com/share/1HPRfbb4Gf/', 'Länk till Facebook-Event'),
 					A2(
@@ -5581,12 +5610,18 @@ var $author$project$Main$homePage = A2(
 					_List_Nil,
 					_List_fromArray(
 						[
-							$elm$html$Html$text('Spelning – Lördag 17 oktober 2026, kl. 13:00, samlingstid meddelas senare (Jazzklubben, Skellefteå)')
+							A2(
+							$elm$html$Html$strong,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$html$Html$text('Spelning')
+								])),
+							$elm$html$Html$text('– Lördag 17 oktober 2026, kl. 13:00, samlingstid meddelas senare (Jazzklubben, Skellefteå)')
 						]))
 				]))
 		]));
 var $elm$html$Html$br = _VirtualDom_node('br');
-var $elm$html$Html$strong = _VirtualDom_node('strong');
 var $author$project$Main$noterPage = A2(
 	$elm$html$Html$div,
 	_List_fromArray(
@@ -5871,7 +5906,7 @@ var $author$project$Main$repertoarPage = A2(
 							_List_Nil,
 							_List_fromArray(
 								[
-									$elm$html$Html$text('Joyband (blåsorkesterversion)')
+									$elm$html$Html$text('Joyband')
 								])),
 							A2(
 							$elm$html$Html$li,
@@ -5962,7 +5997,7 @@ var $author$project$Main$repertoarPage = A2(
 					$elm$core$Maybe$Just('https://www.youtube.com/watch?v=CTMSUvsfHuM')),
 					A4($author$project$Main$audioTrack, 'Cloudberry Jam', 'audio/Cloud-Berry-Jam.mp3', 'Cloudberry Jam.mp3', $elm$core$Maybe$Nothing),
 					A4($author$project$Main$audioTrack, 'I\'ll Remember April', 'audio/Ill-Remember-April.mp3', 'I\'ll Remember April.mp3', $elm$core$Maybe$Nothing),
-					A4($author$project$Main$audioTrack, 'Joyband – blåsorkesterversion', 'audio/Joyband.mp3', 'Joyband.mp3', $elm$core$Maybe$Nothing),
+					A4($author$project$Main$audioTrack, 'Joyband – blåsorkesterversion', 'audio/Joyband.mp3', 'Joyband (blåsorkester).mp3', $elm$core$Maybe$Nothing),
 					A4($author$project$Main$audioTrack, 'Love The One You\'re With', 'audio/Love-The-One.mp3', 'Love The One You\'re With.mp3', $elm$core$Maybe$Nothing)
 				]))
 		]));
@@ -5982,8 +6017,19 @@ var $author$project$Main$view = function (model) {
 	return {
 		body: _List_fromArray(
 			[
-				$author$project$Main$navView,
-				$author$project$Main$pageView(model.page)
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'font-family', 'Arial'),
+						A2($elm$html$Html$Attributes$style, 'font-size', '18px'),
+						A2($elm$html$Html$Attributes$style, 'line-height', '1.5')
+					]),
+				_List_fromArray(
+					[
+						$author$project$Main$navView,
+						$author$project$Main$pageView(model.page)
+					]))
 			]),
 		title: 'Swinging Wheel Big Band'
 	};

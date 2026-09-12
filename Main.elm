@@ -104,10 +104,17 @@ view : Model -> Browser.Document Msg
 view model =
     { title = "Swinging Wheel Big Band"
     , body =
-        [ navView
-        , pageView model.page
+        [ div
+            [ style "font-family" "Arial"
+            , style "font-size" "18px"
+            , style "line-height" "1.5"
+            ]
+            [ navView
+            , pageView model.page
+            ]
         ]
     }
+
 
 
 navView : Html Msg
@@ -275,21 +282,26 @@ homePage =
             [ h2 [] [ text "Alla aktiviteter" ]
 
             , p []
-                [ text "Repetition – Torsdag 24 september 2026, kl. 19:00–21:15 (Kulturskolan / Christinaskolan, Piteå)" ]
+                [ strong [] [ text "Repetetion" ]
+                , text " – Torsdag 24 september 2026, kl. 19:00–21:15 (Kulturskolan / Christinaskolan, Piteå)" ]
 
             , p []
-                [ text "Repetition – Lördag 10 oktober 2026, kl. 10:00–14:00 (Kulturskolan, Piteå)" ]
+                [ strong [] [ text "Repetetion" ]
+                , text " – Lördag 10 oktober 2026, kl. 10:00–14:00 (Kulturskolan, Piteå)" ]
 
             , p []
-                [ text "Genrep med Ida – Torsdag 15 oktober 2026, kl. 19:00–21:30 (Storstrand, Öjebyn)" ]
+                [ strong [] [ text "Genrep med Ida" ]
+                , text " – Torsdag 15 oktober 2026, kl. 19:00–21:30 (Storstrand, Öjebyn)" ]
 
             , p []
-                [ text "Spelning – Fredag 16 oktober 2026, kl. 19:00, samlingstid meddelas senare (Storstrand, Öjebyn)" ]
+                [ strong [] [ text "Spelning" ]
+                , text "– Fredag 16 oktober 2026, kl. 19:00, samlingstid meddelas senare (Storstrand, Öjebyn)" ]
                   , externalLink "https://www.facebook.com/share/1HPRfbb4Gf/"
                   "Länk till Facebook-Event"
 
             , p []
-                [ text "Spelning – Lördag 17 oktober 2026, kl. 13:00, samlingstid meddelas senare (Jazzklubben, Skellefteå)" ]
+                [ strong [] [ text "Spelning" ]
+                , text "– Lördag 17 oktober 2026, kl. 13:00, samlingstid meddelas senare (Jazzklubben, Skellefteå)" ]
             ]
         ]
 
@@ -347,7 +359,7 @@ repertoarPage =
                 , li [] [ text "If You Don't Love Me" ]
                 , li [] [ text "It's Your Woodoo" ]
                 , li [] [ text "Other Body – John Brown" ]
-                , li [] [ text "Joyband (blåsorkesterversion)" ]
+                , li [] [ text "Joyband" ]
                 , li [] [ text "Love The One You're With" ]
                 , li [] [ text "Piano" ]
                 , li [] [ text "Who's Gonna Help Brother Get" ]
@@ -405,7 +417,7 @@ repertoarPage =
                 , audioTrack
                     "Joyband – blåsorkesterversion"
                     "audio/Joyband.mp3"
-                    "Joyband.mp3"
+                    "Joyband (blåsorkester).mp3"
                     Nothing
 
                 , audioTrack
