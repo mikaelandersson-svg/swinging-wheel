@@ -113,13 +113,13 @@ view model =
 navView : Html Msg
 navView =
     nav []
-        [ a [ href "./" ] [ text "Start" ]
+        [ a [ href "/swinging-wheel" ] [ text "Start" ]
         , text " | "
-        , a [ href "./noter" ] [ text "Noter" ]
+        , a [ href "./swinging-wheel/noter" ] [ text "Noter" ]
         , text " | "
-        , a [ href "./repertoar" ] [ text "Repertoar" ]
+        , a [ href "./swinging-wheel/repertoar" ] [ text "Repertoar" ]
         , text " | "
-        , a [ href "./arkiv" ] [ text "Arkiv" ]
+        , a [ href "./swinging-wheel/arkiv" ] [ text "Arkiv" ]
         ]
 
 eventCard : String -> String -> String -> String -> Html Msg
