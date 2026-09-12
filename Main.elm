@@ -70,7 +70,6 @@ init : () -> Url -> Nav.Key -> ( Model, Cmd Msg )
 init _ url key =
     ( { key = key, page = pageFromUrl url }, Cmd.none )
 
-
 pageFromUrl : Url -> Page
 pageFromUrl url =
     case url.fragment of
@@ -99,60 +98,60 @@ update msg model =
         UrlChanged url ->
             ( { model | page = pageFromUrl url }, Cmd.none )
 
-
 view : Model -> Browser.Document Msg
 view model =
     { title = "Swinging Wheel Big Band"
     , body =
-        [ div
-            [ style "font-family" "Arial"
-            , style "font-size" "18px"
-            , style "line-height" "1.5"
-            ]
-            [ navView
-            , pageView model.page
-            ]
+      [ div
+        [ style "font-family" "Arial"
+        , style "font-size" "20px"
+        , style "line-height" "1.5"
         ]
+        [ navView model.page
+        , pageView model.page
+        ]
+      ]
     }
 
-
-
-navView : Html Msg
-navView =
-    nav []
-        [ a [ href "#" ] [ text "Start" ]
-        , text " | "
-        , a [ href "#noter" ] [ text "Noter" ]
-        , text " | "
-        , a [ href "#repertoar" ] [ text "Repertoar" ]
-        , text " | "
-        , a [ href "#arkiv" ] [ text "Arkiv" ]
+navView : Page -> Html Msg
+navView currentPage =
+    nav
+        [ style "font-family" "Arial"
+        , style "display" "flex"
+        , style "justify-content" "center"
+        , style "gap" "8px"
+        , style "padding" "20px"
+        , style "background-color" "#f4f1ec"
+        ]
+        [ navLink currentPage Home "#" "Start"
+        , navLink currentPage Notes "#noter" "Noter"
+        , navLink currentPage Repertoire "#repertoar" "Repertoar"
+        , navLink currentPage Archive "#arkiv" "Arkiv"
         ]
 
-eventCard : String -> String -> String -> String -> Html Msg
-eventCard title date time location =
-    section
-        [ style "flex" "1"
-        , style "min-width" "280px"
-        , style "max-width" "420px"
-        , style "padding" "28px"
-        , style "background-color" "white"
-        , style "border-radius" "12px"
-        , style "box-shadow" "0 3px 12px rgba(0,0,0,0.08)"
+navLink : Page -> Page -> String -> String -> Html Msg
+navLink currentPage page url label =
+    a
+        [ href url
+        , style "padding" "10px 18px"
+        , style "border-radius" "8px"
+        , style "text-decoration" "none"
+        , style "font-size" "17px"
+        , style "font-weight" "bold"
+        , style "color"
+            (if currentPage == page then
+                "white"
+             else
+                "#444"
+            )
+        , style "background-color"
+            (if currentPage == page then
+                "#d06d2c"
+             else
+                "transparent"
+            )
         ]
-        [ h2
-            [ style "margin-top" "0"
-            , style "color" "#d06d2c"
-            ]
-            [ text title ]
-        , p [ style "font-weight" "bold" ] [ text date ]
-        , p [] [ text time ]
-        , p
-            [ style "color" "#666"
-            ]
-            [ text location ]
-        ]
-
+        [ text label ]
 
 pageView : Page -> Html Msg
 pageView page =
@@ -167,8 +166,89 @@ pageView page =
             repertoarPage
 
         Archive ->
-            divPage "Arkiv" "Här kan vi senare lägga låtar, bilder och videor."
+            arkivPage
 
+eventCard : String -> String -> String -> String -> Html Msg
+eventCard title date time location =
+    section
+        [ style "flex" "1"
+        , style "min-width" "280px"
+        , style "max-width" "420px"
+        , style "padding" "28px"
+        , style "background-color" "white"
+        , style "border-radius" "12px"
+        , style "box-shadow" "0 3px 12px rgba(0,0,0,0.08)"
+        , style "font-size" "22px"
+        ]
+        [ h2
+            [ style "margin-top" "0"
+            , style "color" "#d06d2c"
+            ]
+            [ text title ]
+        , p [ style "font-weight" "bold" ] [ text date ]
+        , p [] [ text time ]
+        , p
+            [ style "color" "#666"
+            ]
+            [ text location ]
+        ]
+
+archiveCard : String -> String -> String -> Html Msg
+archiveCard icon title description =
+    section
+        [ style "padding" "28px"
+        , style "background-color" "#f4f1ec"
+        , style "border-radius" "12px"
+        , style "text-align" "center"
+        , style "box-shadow" "0 3px 12px rgba(0,0,0,0.08)"
+        ]
+        [ div
+            [ style "font-size" "40px" ]
+            [ text icon ]
+
+        , h2
+            [ style "margin-bottom" "10px"
+            , style "color" "#d06d2c"
+            ]
+            [ text title ]
+
+        , p
+            [ style "color" "#666"
+            , style "font-size" "17px"
+            ]
+            [ text description ]
+        ]
+
+activity : String -> String -> String -> String -> Html Msg
+activity title date time location =
+    div
+        [ style "margin-bottom" "24px"
+        , style "padding-bottom" "20px"
+        , style "border-bottom" "1px solid #ddd"
+        ]
+        [ h3
+            [ style "margin-bottom" "6px"
+            , style "color" "#d06d2c"
+            ]
+            [ text title ]
+
+        , p
+            [ style "font-weight" "bold"
+            , style "margin" "4px 0"
+            ]
+            [ text date ]
+
+        , p
+            [ style "margin" "4px 0"
+            ]
+            [ text time ]
+
+        , p
+            [ style "color" "#666"
+            , style "margin" "4px 0"
+            ]
+            [ text ("📍 " ++ location) ]
+        ]
 
 divPage : String -> String -> Html Msg
 divPage title description =
@@ -177,6 +257,88 @@ divPage title description =
         , p [] [ text description ]
         ]
 
+
+
+externalLink : String -> String -> Html Msg
+externalLink url label =
+    a
+        [ href url
+        , target "noopener noreferrer"
+        ]
+        [ text label ]
+
+youtubeLink : String -> Html Msg
+youtubeLink url =
+    a
+        [ href url
+        , target "_blank"
+        , rel "noopener noreferrer"
+        , style "display" "inline-block"
+        , style "padding" "10px 16px"
+        , style "background-color" "#cc3333"
+        , style "color" "white"
+        , style "text-decoration" "none"
+        , style "border-radius" "6px"
+        , style "font-weight" "bold"
+        ]
+        [ text "▶ YouTube" ]
+
+facebookLink : String -> Html Msg
+facebookLink url =
+    a
+        [ href url
+        , target "_blank"
+        , rel "noopener noreferrer"
+        , style "display" "inline-block"
+        , style "padding" "10px 16px"
+        , style "background-color" "#4267B2"
+        , style "color" "white"
+        , style "text-decoration" "none"
+        , style "border-radius" "6px"
+        , style "font-weight" "bold"
+        ]
+        [ text "f  Facebook-event" ]
+
+audioPlayer : String -> String -> Maybe String -> Html Msg
+audioPlayer filePath downloadName youtubeUrl =
+    div []
+        [ audio
+            [ controls True
+            , style "width" "50%"
+            , style "height" "60px"
+            ]
+            [ source
+                [ src filePath
+                , type_ "audio/mpeg"
+                ]
+                []
+            ]
+
+        , case youtubeUrl of
+            Just url ->
+                p
+                    [ style "margin" "12px 0" ]
+                    [ youtubeLink url ]
+
+            Nothing ->
+                text ""
+
+        , p
+            [ style "margin-top" "12px" ]
+            [ a
+                [ href filePath
+                , download downloadName
+                , style "display" "inline-block"
+                , style "padding" "10px 16px"
+                , style "background-color" "#666"
+                , style "color" "white"
+                , style "text-decoration" "none"
+                , style "border-radius" "6px"
+                , style "font-weight" "bold"
+                ]
+                [ text "↓ Ladda ner MP3" ]
+            ]
+        ]
 
 audioTrack : String -> String -> String -> Maybe String -> Html Msg
 audioTrack title filePath downloadName youtubeUrl =
@@ -189,47 +351,13 @@ audioTrack title filePath downloadName youtubeUrl =
         [ h3
             [ style "margin-top" "0" ]
             [ text title ]
-
-        , case youtubeUrl of
-            Just url ->
-                p []
-                    [ externalLink url "Lyssna på YouTube" ]
-
-            Nothing ->
-                text ""
-
-        , audioPlayer filePath downloadName
+        , audioPlayer filePath downloadName youtubeUrl
         ]
 
-externalLink : String -> String -> Html Msg
-externalLink url label =
-    a
-        [ href url
-        , target "noopener noreferrer"
-        ]
-        [ text label ]
 
 
-audioPlayer : String -> String -> Html Msg
-audioPlayer filePath downloadName =
-    div []
-        [ audio
-            [ controls True ]
-            [ source
-                [ src filePath
-                , type_ "audio/mpeg"
-                ]
-                []
-            ]
-        , p []
-            [ a
-                [ href filePath
-                , download downloadName
-                ]
-                [ text "Ladda ner MP3" ]
-            ]
-        ]
 
+------- pages ------
 
 homePage : Html Msg
 homePage =
@@ -241,9 +369,6 @@ homePage =
         ]
         [ h1 [] [ text "Swinging Wheel Big Band" ]
 
-        , p []
-            [ text "Swing, jazz och storbandsmusik." ]
-
         , section
             [ style "padding" "20px"
             , style "background-color" "#f4f1ec"
@@ -251,7 +376,17 @@ homePage =
             ]
             [ h2 [] [ text "Välkommen!" ]
             , p []
-                [ text "Här hittar du information om repetitioner, spelningar och vår repertoar." ]
+                [ text "Här hittar du information om repetitioner, spelningar och vår repertoar."
+                , br [] []
+                , br [] []
+                , strong [] [ text "HOME! Ida Sand och SWBB" ]
+                , br [] []
+                , text "Fredag 16 oktober 2026 19:00"
+                , br [] []
+                , br [] []
+                , facebookLink "https://www.facebook.com/share/1HPRfbb4Gf/"
+                ]
+
             ]
 
         , section
@@ -280,28 +415,37 @@ homePage =
         , section
             [ style "margin-top" "25px" ]
             [ h2 [] [ text "Alla aktiviteter" ]
+        
+            , activity
+                "Repetition"
+                "Torsdag 24 september 2026"
+                "19:00–21:15"
+                "Kulturskolan / Christinaskolan, Piteå"
+        
+            , activity
+                "Repetition"
+                "Lördag 10 oktober 2026"
+                "10:00–14:00"
+                "Kulturskolan, Piteå"
+        
+            , activity
+                "Genrep med Ida"
+                "Torsdag 15 oktober 2026"
+                "19:00–21:30"
+                "Storstrand, Öjebyn"
+    
+        
+            , activity
+                "Spelning"
+                "Fredag 16 oktober 2026"
+                "19:00 – samlingstid meddelas senare"
+                "Storstrand, Öjebyn"
 
-            , p []
-                [ strong [] [ text "Repetetion" ]
-                , text " – Torsdag 24 september 2026, kl. 19:00–21:15 (Kulturskolan / Christinaskolan, Piteå)" ]
-
-            , p []
-                [ strong [] [ text "Repetetion" ]
-                , text " – Lördag 10 oktober 2026, kl. 10:00–14:00 (Kulturskolan, Piteå)" ]
-
-            , p []
-                [ strong [] [ text "Genrep med Ida" ]
-                , text " – Torsdag 15 oktober 2026, kl. 19:00–21:30 (Storstrand, Öjebyn)" ]
-
-            , p []
-                [ strong [] [ text "Spelning" ]
-                , text "– Fredag 16 oktober 2026, kl. 19:00, samlingstid meddelas senare (Storstrand, Öjebyn)" ]
-                  , externalLink "https://www.facebook.com/share/1HPRfbb4Gf/"
-                  "Länk till Facebook-Event"
-
-            , p []
-                [ strong [] [ text "Spelning" ]
-                , text "– Lördag 17 oktober 2026, kl. 13:00, samlingstid meddelas senare (Jazzklubben, Skellefteå)" ]
+            , activity
+                "Spelning"
+                "Lördag 17 oktober 2026"
+                "13:00 – samlingstid meddelas senare"
+                "Jazzklubben, Skellefteå"
             ]
         ]
 
@@ -313,19 +457,36 @@ noterPage =
         , style "margin" "40px auto"
         , style "padding" "20px"
         ]
-        [ section
-            [ style "margin-top" "25px" ]
-            [ h2 [] [ text "Google Drive" ]
+        [ h1
+            [ style "color" "#d06d2c" ]
+            [ text "🎼 Noter" ]
+
+        , p
+            [ style "font-size" "19px"
+            , style "line-height" "1.5"
+            ]
+            [ text "Här hittar du våra noter och annat material inför repetitioner och spelningar." ]
+
+        , section
+            [ style "margin-top" "30px"
+            , style "padding" "28px"
+            , style "background-color" "#f4f1ec"
+            , style "border-radius" "12px"
+            , style "box-shadow" "0 3px 12px rgba(0,0,0,0.08)"
+            ]
+            [ h2
+                [ style "margin-top" "0" ]
+                [ text "📁 Notbibliotek" ]
 
             , p []
-                [ strong [] [ text "Noter" ]
-                , br [] []
-                , externalLink "https://drive.google.com/drive/folders/1e6CZIeFbtHq78eRMxCFlp2TrarGzmXal"
-                "Länk till Google Drive"
+                [ text "Alla noter finns samlade i vårt Google Drive-arkiv." ]
+
+            , externalLink
+                "https://drive.google.com/drive/folders/1e6CZIeFbtHq78eRMxCFlp2TrarGzmXal"
+                "Öppna Google Drive"
             ]
-        ]       
         ]
-        
+       
 repertoarPage : Html Msg
 repertoarPage =
     div
@@ -336,11 +497,11 @@ repertoarPage =
         ]
         [ section
             []
-            [ h1 [] [ text "Repertoar" ]
+            [ h1 [] [ text "HOME! Ida Sand & SWBB" ]
 
             , h2
                 [ style "margin-top" "25px" ]
-                [ text "Låtlista" ]
+                [ text "Set-list" ]
 
             , ul
                 [ style "line-height" "1.35"
@@ -386,8 +547,8 @@ repertoarPage =
                         [ img
                             [ src "media/spotifyikon.svg"
                             , alt "Spotify"
-                            , style "width" "52px"
-                            , style "height" "52px"
+                            , style "width" "100px"
+                            , style "height" "100px"
                             ]
                             []
                         ]
@@ -409,7 +570,7 @@ repertoarPage =
                     Nothing
 
                 , audioTrack
-                    "I'll Remember April"
+                    "I'll Remember April (öva denna!)"
                     "audio/Ill-Remember-April.mp3"
                     "I'll Remember April.mp3"
                     Nothing
@@ -428,5 +589,18 @@ repertoarPage =
                 ]
             ]
         
-        
+arkivPage : Html Msg
+arkivPage =
+     div
+         [ style "display" "grid"
+         , style "grid-template-columns" "repeat(auto-fit, minmax(260px, 1fr))"
+         , style "gap" "20px"
+         , style "margin-top" "30px"
+         ]
+         [ archiveCard "🎵" "Låtar" "Inspelningar och äldre material."
+         , archiveCard "📷" "Bilder" "Bilder från spelningar och repetitioner."
+         , archiveCard "🎬" "Videor" "Klipp från konserter och andra framträdanden."
+         ]
+     
+
 

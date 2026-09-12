@@ -5286,6 +5286,7 @@ var $author$project$Main$update = F2(
 		}
 	});
 var $elm$html$Html$div = _VirtualDom_node('div');
+var $elm$html$Html$nav = _VirtualDom_node('nav');
 var $elm$html$Html$a = _VirtualDom_node('a');
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
@@ -5301,87 +5302,181 @@ var $elm$html$Html$Attributes$href = function (url) {
 		'href',
 		_VirtualDom_noJavaScriptUri(url));
 };
-var $elm$html$Html$nav = _VirtualDom_node('nav');
+var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
+var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $author$project$Main$navView = A2(
-	$elm$html$Html$nav,
-	_List_Nil,
-	_List_fromArray(
-		[
-			A2(
-			$elm$html$Html$a,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$href('#')
-				]),
-			_List_fromArray(
-				[
-					$elm$html$Html$text('Start')
-				])),
-			$elm$html$Html$text(' | '),
-			A2(
-			$elm$html$Html$a,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$href('#noter')
-				]),
-			_List_fromArray(
-				[
-					$elm$html$Html$text('Noter')
-				])),
-			$elm$html$Html$text(' | '),
-			A2(
-			$elm$html$Html$a,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$href('#repertoar')
-				]),
-			_List_fromArray(
-				[
-					$elm$html$Html$text('Repertoar')
-				])),
-			$elm$html$Html$text(' | '),
-			A2(
-			$elm$html$Html$a,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$href('#arkiv')
-				]),
-			_List_fromArray(
-				[
-					$elm$html$Html$text('Arkiv')
-				]))
-		]));
-var $elm$html$Html$h1 = _VirtualDom_node('h1');
-var $elm$html$Html$p = _VirtualDom_node('p');
-var $author$project$Main$divPage = F2(
-	function (title, description) {
+var $author$project$Main$navLink = F4(
+	function (currentPage, page, url, label) {
 		return A2(
-			$elm$html$Html$div,
-			_List_Nil,
+			$elm$html$Html$a,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$href(url),
+					A2($elm$html$Html$Attributes$style, 'padding', '10px 18px'),
+					A2($elm$html$Html$Attributes$style, 'border-radius', '8px'),
+					A2($elm$html$Html$Attributes$style, 'text-decoration', 'none'),
+					A2($elm$html$Html$Attributes$style, 'font-size', '17px'),
+					A2($elm$html$Html$Attributes$style, 'font-weight', 'bold'),
+					A2(
+					$elm$html$Html$Attributes$style,
+					'color',
+					_Utils_eq(currentPage, page) ? 'white' : '#444'),
+					A2(
+					$elm$html$Html$Attributes$style,
+					'background-color',
+					_Utils_eq(currentPage, page) ? '#d06d2c' : 'transparent')
+				]),
+			_List_fromArray(
+				[
+					$elm$html$Html$text(label)
+				]));
+	});
+var $author$project$Main$navView = function (currentPage) {
+	return A2(
+		$elm$html$Html$nav,
+		_List_fromArray(
+			[
+				A2($elm$html$Html$Attributes$style, 'font-family', 'Arial'),
+				A2($elm$html$Html$Attributes$style, 'display', 'flex'),
+				A2($elm$html$Html$Attributes$style, 'justify-content', 'center'),
+				A2($elm$html$Html$Attributes$style, 'gap', '8px'),
+				A2($elm$html$Html$Attributes$style, 'padding', '20px'),
+				A2($elm$html$Html$Attributes$style, 'background-color', '#f4f1ec')
+			]),
+		_List_fromArray(
+			[
+				A4($author$project$Main$navLink, currentPage, $author$project$Main$Home, '#', 'Start'),
+				A4($author$project$Main$navLink, currentPage, $author$project$Main$Notes, '#noter', 'Noter'),
+				A4($author$project$Main$navLink, currentPage, $author$project$Main$Repertoire, '#repertoar', 'Repertoar'),
+				A4($author$project$Main$navLink, currentPage, $author$project$Main$Archive, '#arkiv', 'Arkiv')
+			]));
+};
+var $elm$html$Html$h2 = _VirtualDom_node('h2');
+var $elm$html$Html$p = _VirtualDom_node('p');
+var $elm$html$Html$section = _VirtualDom_node('section');
+var $author$project$Main$archiveCard = F3(
+	function (icon, title, description) {
+		return A2(
+			$elm$html$Html$section,
+			_List_fromArray(
+				[
+					A2($elm$html$Html$Attributes$style, 'padding', '28px'),
+					A2($elm$html$Html$Attributes$style, 'background-color', '#f4f1ec'),
+					A2($elm$html$Html$Attributes$style, 'border-radius', '12px'),
+					A2($elm$html$Html$Attributes$style, 'text-align', 'center'),
+					A2($elm$html$Html$Attributes$style, 'box-shadow', '0 3px 12px rgba(0,0,0,0.08)')
+				]),
 			_List_fromArray(
 				[
 					A2(
-					$elm$html$Html$h1,
-					_List_Nil,
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							A2($elm$html$Html$Attributes$style, 'font-size', '40px')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(icon)
+						])),
+					A2(
+					$elm$html$Html$h2,
+					_List_fromArray(
+						[
+							A2($elm$html$Html$Attributes$style, 'margin-bottom', '10px'),
+							A2($elm$html$Html$Attributes$style, 'color', '#d06d2c')
+						]),
 					_List_fromArray(
 						[
 							$elm$html$Html$text(title)
 						])),
 					A2(
 					$elm$html$Html$p,
-					_List_Nil,
+					_List_fromArray(
+						[
+							A2($elm$html$Html$Attributes$style, 'color', '#666'),
+							A2($elm$html$Html$Attributes$style, 'font-size', '17px')
+						]),
 					_List_fromArray(
 						[
 							$elm$html$Html$text(description)
 						]))
 				]));
 	});
-var $elm$html$Html$h2 = _VirtualDom_node('h2');
-var $elm$html$Html$section = _VirtualDom_node('section');
-var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
-var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
+var $author$project$Main$arkivPage = A2(
+	$elm$html$Html$div,
+	_List_fromArray(
+		[
+			A2($elm$html$Html$Attributes$style, 'display', 'grid'),
+			A2($elm$html$Html$Attributes$style, 'grid-template-columns', 'repeat(auto-fit, minmax(260px, 1fr))'),
+			A2($elm$html$Html$Attributes$style, 'gap', '20px'),
+			A2($elm$html$Html$Attributes$style, 'margin-top', '30px')
+		]),
+	_List_fromArray(
+		[
+			A3($author$project$Main$archiveCard, '🎵', 'Låtar', 'Inspelningar och äldre material.'),
+			A3($author$project$Main$archiveCard, '📷', 'Bilder', 'Bilder från spelningar och repetitioner.'),
+			A3($author$project$Main$archiveCard, '🎬', 'Videor', 'Klipp från konserter och andra framträdanden.')
+		]));
+var $elm$html$Html$h3 = _VirtualDom_node('h3');
+var $author$project$Main$activity = F4(
+	function (title, date, time, location) {
+		return A2(
+			$elm$html$Html$div,
+			_List_fromArray(
+				[
+					A2($elm$html$Html$Attributes$style, 'margin-bottom', '24px'),
+					A2($elm$html$Html$Attributes$style, 'padding-bottom', '20px'),
+					A2($elm$html$Html$Attributes$style, 'border-bottom', '1px solid #ddd')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$h3,
+					_List_fromArray(
+						[
+							A2($elm$html$Html$Attributes$style, 'margin-bottom', '6px'),
+							A2($elm$html$Html$Attributes$style, 'color', '#d06d2c')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(title)
+						])),
+					A2(
+					$elm$html$Html$p,
+					_List_fromArray(
+						[
+							A2($elm$html$Html$Attributes$style, 'font-weight', 'bold'),
+							A2($elm$html$Html$Attributes$style, 'margin', '4px 0')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(date)
+						])),
+					A2(
+					$elm$html$Html$p,
+					_List_fromArray(
+						[
+							A2($elm$html$Html$Attributes$style, 'margin', '4px 0')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(time)
+						])),
+					A2(
+					$elm$html$Html$p,
+					_List_fromArray(
+						[
+							A2($elm$html$Html$Attributes$style, 'color', '#666'),
+							A2($elm$html$Html$Attributes$style, 'margin', '4px 0')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text('📍 ' + location)
+						]))
+				]));
+	});
+var $elm$html$Html$br = _VirtualDom_node('br');
 var $author$project$Main$eventCard = F4(
 	function (title, date, time, location) {
 		return A2(
@@ -5394,7 +5489,8 @@ var $author$project$Main$eventCard = F4(
 					A2($elm$html$Html$Attributes$style, 'padding', '28px'),
 					A2($elm$html$Html$Attributes$style, 'background-color', 'white'),
 					A2($elm$html$Html$Attributes$style, 'border-radius', '12px'),
-					A2($elm$html$Html$Attributes$style, 'box-shadow', '0 3px 12px rgba(0,0,0,0.08)')
+					A2($elm$html$Html$Attributes$style, 'box-shadow', '0 3px 12px rgba(0,0,0,0.08)'),
+					A2($elm$html$Html$Attributes$style, 'font-size', '22px')
 				]),
 			_List_fromArray(
 				[
@@ -5438,21 +5534,30 @@ var $author$project$Main$eventCard = F4(
 						]))
 				]));
 	});
+var $elm$html$Html$Attributes$rel = _VirtualDom_attribute('rel');
 var $elm$html$Html$Attributes$target = $elm$html$Html$Attributes$stringProperty('target');
-var $author$project$Main$externalLink = F2(
-	function (url, label) {
-		return A2(
-			$elm$html$Html$a,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$href(url),
-					$elm$html$Html$Attributes$target('noopener noreferrer')
-				]),
-			_List_fromArray(
-				[
-					$elm$html$Html$text(label)
-				]));
-	});
+var $author$project$Main$facebookLink = function (url) {
+	return A2(
+		$elm$html$Html$a,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$href(url),
+				$elm$html$Html$Attributes$target('_blank'),
+				$elm$html$Html$Attributes$rel('noopener noreferrer'),
+				A2($elm$html$Html$Attributes$style, 'display', 'inline-block'),
+				A2($elm$html$Html$Attributes$style, 'padding', '10px 16px'),
+				A2($elm$html$Html$Attributes$style, 'background-color', '#4267B2'),
+				A2($elm$html$Html$Attributes$style, 'color', 'white'),
+				A2($elm$html$Html$Attributes$style, 'text-decoration', 'none'),
+				A2($elm$html$Html$Attributes$style, 'border-radius', '6px'),
+				A2($elm$html$Html$Attributes$style, 'font-weight', 'bold')
+			]),
+		_List_fromArray(
+			[
+				$elm$html$Html$text('f  Facebook-event')
+			]));
+};
+var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$html$Html$strong = _VirtualDom_node('strong');
 var $author$project$Main$homePage = A2(
 	$elm$html$Html$div,
@@ -5471,13 +5576,6 @@ var $author$project$Main$homePage = A2(
 			_List_fromArray(
 				[
 					$elm$html$Html$text('Swinging Wheel Big Band')
-				])),
-			A2(
-			$elm$html$Html$p,
-			_List_Nil,
-			_List_fromArray(
-				[
-					$elm$html$Html$text('Swing, jazz och storbandsmusik.')
 				])),
 			A2(
 			$elm$html$Html$section,
@@ -5501,7 +5599,21 @@ var $author$project$Main$homePage = A2(
 					_List_Nil,
 					_List_fromArray(
 						[
-							$elm$html$Html$text('Här hittar du information om repetitioner, spelningar och vår repertoar.')
+							$elm$html$Html$text('Här hittar du information om repetitioner, spelningar och vår repertoar.'),
+							A2($elm$html$Html$br, _List_Nil, _List_Nil),
+							A2($elm$html$Html$br, _List_Nil, _List_Nil),
+							A2(
+							$elm$html$Html$strong,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$html$Html$text('HOME! Ida Sand och SWBB')
+								])),
+							A2($elm$html$Html$br, _List_Nil, _List_Nil),
+							$elm$html$Html$text('Fredag 16 oktober 2026 19:00'),
+							A2($elm$html$Html$br, _List_Nil, _List_Nil),
+							A2($elm$html$Html$br, _List_Nil, _List_Nil),
+							$author$project$Main$facebookLink('https://www.facebook.com/share/1HPRfbb4Gf/')
 						]))
 				])),
 			A2(
@@ -5548,80 +5660,27 @@ var $author$project$Main$homePage = A2(
 						[
 							$elm$html$Html$text('Alla aktiviteter')
 						])),
-					A2(
-					$elm$html$Html$p,
-					_List_Nil,
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$strong,
-							_List_Nil,
-							_List_fromArray(
-								[
-									$elm$html$Html$text('Repetetion')
-								])),
-							$elm$html$Html$text(' – Torsdag 24 september 2026, kl. 19:00–21:15 (Kulturskolan / Christinaskolan, Piteå)')
-						])),
-					A2(
-					$elm$html$Html$p,
-					_List_Nil,
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$strong,
-							_List_Nil,
-							_List_fromArray(
-								[
-									$elm$html$Html$text('Repetetion')
-								])),
-							$elm$html$Html$text(' – Lördag 10 oktober 2026, kl. 10:00–14:00 (Kulturskolan, Piteå)')
-						])),
-					A2(
-					$elm$html$Html$p,
-					_List_Nil,
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$strong,
-							_List_Nil,
-							_List_fromArray(
-								[
-									$elm$html$Html$text('Genrep med Ida')
-								])),
-							$elm$html$Html$text(' – Torsdag 15 oktober 2026, kl. 19:00–21:30 (Storstrand, Öjebyn)')
-						])),
-					A2(
-					$elm$html$Html$p,
-					_List_Nil,
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$strong,
-							_List_Nil,
-							_List_fromArray(
-								[
-									$elm$html$Html$text('Spelning')
-								])),
-							$elm$html$Html$text('– Fredag 16 oktober 2026, kl. 19:00, samlingstid meddelas senare (Storstrand, Öjebyn)')
-						])),
-					A2($author$project$Main$externalLink, 'https://www.facebook.com/share/1HPRfbb4Gf/', 'Länk till Facebook-Event'),
-					A2(
-					$elm$html$Html$p,
-					_List_Nil,
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$strong,
-							_List_Nil,
-							_List_fromArray(
-								[
-									$elm$html$Html$text('Spelning')
-								])),
-							$elm$html$Html$text('– Lördag 17 oktober 2026, kl. 13:00, samlingstid meddelas senare (Jazzklubben, Skellefteå)')
-						]))
+					A4($author$project$Main$activity, 'Repetition', 'Torsdag 24 september 2026', '19:00–21:15', 'Kulturskolan / Christinaskolan, Piteå'),
+					A4($author$project$Main$activity, 'Repetition', 'Lördag 10 oktober 2026', '10:00–14:00', 'Kulturskolan, Piteå'),
+					A4($author$project$Main$activity, 'Genrep med Ida', 'Torsdag 15 oktober 2026', '19:00–21:30', 'Storstrand, Öjebyn'),
+					A4($author$project$Main$activity, 'Spelning', 'Fredag 16 oktober 2026', '19:00 – samlingstid meddelas senare', 'Storstrand, Öjebyn'),
+					A4($author$project$Main$activity, 'Spelning', 'Lördag 17 oktober 2026', '13:00 – samlingstid meddelas senare', 'Jazzklubben, Skellefteå')
 				]))
 		]));
-var $elm$html$Html$br = _VirtualDom_node('br');
+var $author$project$Main$externalLink = F2(
+	function (url, label) {
+		return A2(
+			$elm$html$Html$a,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$href(url),
+					$elm$html$Html$Attributes$target('noopener noreferrer')
+				]),
+			_List_fromArray(
+				[
+					$elm$html$Html$text(label)
+				]));
+	});
 var $author$project$Main$noterPage = A2(
 	$elm$html$Html$div,
 	_List_fromArray(
@@ -5634,35 +5693,56 @@ var $author$project$Main$noterPage = A2(
 	_List_fromArray(
 		[
 			A2(
+			$elm$html$Html$h1,
+			_List_fromArray(
+				[
+					A2($elm$html$Html$Attributes$style, 'color', '#d06d2c')
+				]),
+			_List_fromArray(
+				[
+					$elm$html$Html$text('🎼 Noter')
+				])),
+			A2(
+			$elm$html$Html$p,
+			_List_fromArray(
+				[
+					A2($elm$html$Html$Attributes$style, 'font-size', '19px'),
+					A2($elm$html$Html$Attributes$style, 'line-height', '1.5')
+				]),
+			_List_fromArray(
+				[
+					$elm$html$Html$text('Här hittar du våra noter och annat material inför repetitioner och spelningar.')
+				])),
+			A2(
 			$elm$html$Html$section,
 			_List_fromArray(
 				[
-					A2($elm$html$Html$Attributes$style, 'margin-top', '25px')
+					A2($elm$html$Html$Attributes$style, 'margin-top', '30px'),
+					A2($elm$html$Html$Attributes$style, 'padding', '28px'),
+					A2($elm$html$Html$Attributes$style, 'background-color', '#f4f1ec'),
+					A2($elm$html$Html$Attributes$style, 'border-radius', '12px'),
+					A2($elm$html$Html$Attributes$style, 'box-shadow', '0 3px 12px rgba(0,0,0,0.08)')
 				]),
 			_List_fromArray(
 				[
 					A2(
 					$elm$html$Html$h2,
-					_List_Nil,
 					_List_fromArray(
 						[
-							$elm$html$Html$text('Google Drive')
+							A2($elm$html$Html$Attributes$style, 'margin-top', '0')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text('📁 Notbibliotek')
 						])),
 					A2(
 					$elm$html$Html$p,
 					_List_Nil,
 					_List_fromArray(
 						[
-							A2(
-							$elm$html$Html$strong,
-							_List_Nil,
-							_List_fromArray(
-								[
-									$elm$html$Html$text('Noter')
-								])),
-							A2($elm$html$Html$br, _List_Nil, _List_Nil),
-							A2($author$project$Main$externalLink, 'https://drive.google.com/drive/folders/1e6CZIeFbtHq78eRMxCFlp2TrarGzmXal', 'Länk till Google Drive')
-						]))
+							$elm$html$Html$text('Alla noter finns samlade i vårt Google Drive-arkiv.')
+						])),
+					A2($author$project$Main$externalLink, 'https://drive.google.com/drive/folders/1e6CZIeFbtHq78eRMxCFlp2TrarGzmXal', 'Öppna Google Drive')
 				]))
 		]));
 var $elm$html$Html$Attributes$alt = $elm$html$Html$Attributes$stringProperty('alt');
@@ -5687,8 +5767,29 @@ var $elm$html$Html$Attributes$src = function (url) {
 		_VirtualDom_noJavaScriptOrHtmlUri(url));
 };
 var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
-var $author$project$Main$audioPlayer = F2(
-	function (filePath, downloadName) {
+var $author$project$Main$youtubeLink = function (url) {
+	return A2(
+		$elm$html$Html$a,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$href(url),
+				$elm$html$Html$Attributes$target('_blank'),
+				$elm$html$Html$Attributes$rel('noopener noreferrer'),
+				A2($elm$html$Html$Attributes$style, 'display', 'inline-block'),
+				A2($elm$html$Html$Attributes$style, 'padding', '10px 16px'),
+				A2($elm$html$Html$Attributes$style, 'background-color', '#cc3333'),
+				A2($elm$html$Html$Attributes$style, 'color', 'white'),
+				A2($elm$html$Html$Attributes$style, 'text-decoration', 'none'),
+				A2($elm$html$Html$Attributes$style, 'border-radius', '6px'),
+				A2($elm$html$Html$Attributes$style, 'font-weight', 'bold')
+			]),
+		_List_fromArray(
+			[
+				$elm$html$Html$text('▶ YouTube')
+			]));
+};
+var $author$project$Main$audioPlayer = F3(
+	function (filePath, downloadName, youtubeUrl) {
 		return A2(
 			$elm$html$Html$div,
 			_List_Nil,
@@ -5698,7 +5799,9 @@ var $author$project$Main$audioPlayer = F2(
 					$elm$html$Html$audio,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$controls(true)
+							$elm$html$Html$Attributes$controls(true),
+							A2($elm$html$Html$Attributes$style, 'width', '50%'),
+							A2($elm$html$Html$Attributes$style, 'height', '60px')
 						]),
 					_List_fromArray(
 						[
@@ -5711,9 +5814,29 @@ var $author$project$Main$audioPlayer = F2(
 								]),
 							_List_Nil)
 						])),
+					function () {
+					if (youtubeUrl.$ === 'Just') {
+						var url = youtubeUrl.a;
+						return A2(
+							$elm$html$Html$p,
+							_List_fromArray(
+								[
+									A2($elm$html$Html$Attributes$style, 'margin', '12px 0')
+								]),
+							_List_fromArray(
+								[
+									$author$project$Main$youtubeLink(url)
+								]));
+					} else {
+						return $elm$html$Html$text('');
+					}
+				}(),
 					A2(
 					$elm$html$Html$p,
-					_List_Nil,
+					_List_fromArray(
+						[
+							A2($elm$html$Html$Attributes$style, 'margin-top', '12px')
+						]),
 					_List_fromArray(
 						[
 							A2(
@@ -5721,16 +5844,22 @@ var $author$project$Main$audioPlayer = F2(
 							_List_fromArray(
 								[
 									$elm$html$Html$Attributes$href(filePath),
-									$elm$html$Html$Attributes$download(downloadName)
+									$elm$html$Html$Attributes$download(downloadName),
+									A2($elm$html$Html$Attributes$style, 'display', 'inline-block'),
+									A2($elm$html$Html$Attributes$style, 'padding', '10px 16px'),
+									A2($elm$html$Html$Attributes$style, 'background-color', '#666'),
+									A2($elm$html$Html$Attributes$style, 'color', 'white'),
+									A2($elm$html$Html$Attributes$style, 'text-decoration', 'none'),
+									A2($elm$html$Html$Attributes$style, 'border-radius', '6px'),
+									A2($elm$html$Html$Attributes$style, 'font-weight', 'bold')
 								]),
 							_List_fromArray(
 								[
-									$elm$html$Html$text('Ladda ner MP3')
+									$elm$html$Html$text('↓ Ladda ner MP3')
 								]))
 						]))
 				]));
 	});
-var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $author$project$Main$audioTrack = F4(
 	function (title, filePath, downloadName, youtubeUrl) {
 		return A2(
@@ -5754,21 +5883,7 @@ var $author$project$Main$audioTrack = F4(
 						[
 							$elm$html$Html$text(title)
 						])),
-					function () {
-					if (youtubeUrl.$ === 'Just') {
-						var url = youtubeUrl.a;
-						return A2(
-							$elm$html$Html$p,
-							_List_Nil,
-							_List_fromArray(
-								[
-									A2($author$project$Main$externalLink, url, 'Lyssna på YouTube')
-								]));
-					} else {
-						return $elm$html$Html$text('');
-					}
-				}(),
-					A2($author$project$Main$audioPlayer, filePath, downloadName)
+					A3($author$project$Main$audioPlayer, filePath, downloadName, youtubeUrl)
 				]));
 	});
 var $elm$html$Html$img = _VirtualDom_node('img');
@@ -5795,7 +5910,7 @@ var $author$project$Main$repertoarPage = A2(
 					_List_Nil,
 					_List_fromArray(
 						[
-							$elm$html$Html$text('Repertoar')
+							$elm$html$Html$text('HOME! Ida Sand & SWBB')
 						])),
 					A2(
 					$elm$html$Html$h2,
@@ -5805,7 +5920,7 @@ var $author$project$Main$repertoarPage = A2(
 						]),
 					_List_fromArray(
 						[
-							$elm$html$Html$text('Låtlista')
+							$elm$html$Html$text('Set-list')
 						])),
 					A2(
 					$elm$html$Html$ul,
@@ -5975,8 +6090,8 @@ var $author$project$Main$repertoarPage = A2(
 										[
 											$elm$html$Html$Attributes$src('media/spotifyikon.svg'),
 											$elm$html$Html$Attributes$alt('Spotify'),
-											A2($elm$html$Html$Attributes$style, 'width', '52px'),
-											A2($elm$html$Html$Attributes$style, 'height', '52px')
+											A2($elm$html$Html$Attributes$style, 'width', '100px'),
+											A2($elm$html$Html$Attributes$style, 'height', '100px')
 										]),
 									_List_Nil)
 								])),
@@ -5996,7 +6111,7 @@ var $author$project$Main$repertoarPage = A2(
 					'Brutal Truth - Ida Sand.mp3',
 					$elm$core$Maybe$Just('https://www.youtube.com/watch?v=CTMSUvsfHuM')),
 					A4($author$project$Main$audioTrack, 'Cloudberry Jam', 'audio/Cloud-Berry-Jam.mp3', 'Cloudberry Jam.mp3', $elm$core$Maybe$Nothing),
-					A4($author$project$Main$audioTrack, 'I\'ll Remember April', 'audio/Ill-Remember-April.mp3', 'I\'ll Remember April.mp3', $elm$core$Maybe$Nothing),
+					A4($author$project$Main$audioTrack, 'I\'ll Remember April (öva denna!)', 'audio/Ill-Remember-April.mp3', 'I\'ll Remember April.mp3', $elm$core$Maybe$Nothing),
 					A4($author$project$Main$audioTrack, 'Joyband – blåsorkesterversion', 'audio/Joyband.mp3', 'Joyband (blåsorkester).mp3', $elm$core$Maybe$Nothing),
 					A4($author$project$Main$audioTrack, 'Love The One You\'re With', 'audio/Love-The-One.mp3', 'Love The One You\'re With.mp3', $elm$core$Maybe$Nothing)
 				]))
@@ -6010,7 +6125,7 @@ var $author$project$Main$pageView = function (page) {
 		case 'Repertoire':
 			return $author$project$Main$repertoarPage;
 		default:
-			return A2($author$project$Main$divPage, 'Arkiv', 'Här kan vi senare lägga låtar, bilder och videor.');
+			return $author$project$Main$arkivPage;
 	}
 };
 var $author$project$Main$view = function (model) {
@@ -6022,12 +6137,12 @@ var $author$project$Main$view = function (model) {
 				_List_fromArray(
 					[
 						A2($elm$html$Html$Attributes$style, 'font-family', 'Arial'),
-						A2($elm$html$Html$Attributes$style, 'font-size', '18px'),
+						A2($elm$html$Html$Attributes$style, 'font-size', '20px'),
 						A2($elm$html$Html$Attributes$style, 'line-height', '1.5')
 					]),
 				_List_fromArray(
 					[
-						$author$project$Main$navView,
+						$author$project$Main$navView(model.page),
 						$author$project$Main$pageView(model.page)
 					]))
 			]),
