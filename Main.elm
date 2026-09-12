@@ -119,8 +119,8 @@ navView currentPage =
         [ style "font-family" "Arial"
         , style "display" "flex"
         , style "justify-content" "center"
-        , style "gap" "6px"
-        , style "padding" "16px 10px"
+        , style "gap" "8px"
+        , style "padding" "20px 10px"
         , style "background-color" "#f4f1ec"
         , style "flex-wrap" "wrap"
         ]
@@ -135,10 +135,10 @@ navLink : Page -> Page -> String -> String -> Html Msg
 navLink currentPage page url label =
     a
         [ href url
-        , style "padding" "14px 20px"
-        , style "border-radius" "8px"
+        , style "padding" "18px 26px"
+        , style "border-radius" "10px"
         , style "text-decoration" "none"
-        , style "font-size" "18px"
+        , style "font-size" "21px"
         , style "font-weight" "bold"
         , style "color"
             (if currentPage == page then

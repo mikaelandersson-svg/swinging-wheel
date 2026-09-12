@@ -5313,10 +5313,10 @@ var $author$project$Main$navLink = F4(
 			_List_fromArray(
 				[
 					$elm$html$Html$Attributes$href(url),
-					A2($elm$html$Html$Attributes$style, 'padding', '14px 20px'),
-					A2($elm$html$Html$Attributes$style, 'border-radius', '8px'),
+					A2($elm$html$Html$Attributes$style, 'padding', '18px 26px'),
+					A2($elm$html$Html$Attributes$style, 'border-radius', '10px'),
 					A2($elm$html$Html$Attributes$style, 'text-decoration', 'none'),
-					A2($elm$html$Html$Attributes$style, 'font-size', '18px'),
+					A2($elm$html$Html$Attributes$style, 'font-size', '21px'),
 					A2($elm$html$Html$Attributes$style, 'font-weight', 'bold'),
 					A2(
 					$elm$html$Html$Attributes$style,
@@ -5340,8 +5340,8 @@ var $author$project$Main$navView = function (currentPage) {
 				A2($elm$html$Html$Attributes$style, 'font-family', 'Arial'),
 				A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 				A2($elm$html$Html$Attributes$style, 'justify-content', 'center'),
-				A2($elm$html$Html$Attributes$style, 'gap', '6px'),
-				A2($elm$html$Html$Attributes$style, 'padding', '16px 10px'),
+				A2($elm$html$Html$Attributes$style, 'gap', '8px'),
+				A2($elm$html$Html$Attributes$style, 'padding', '20px 10px'),
 				A2($elm$html$Html$Attributes$style, 'background-color', '#f4f1ec'),
 				A2($elm$html$Html$Attributes$style, 'flex-wrap', 'wrap')
 			]),
