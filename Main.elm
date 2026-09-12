@@ -80,7 +80,7 @@ pageFromUrl url =
         "/swinging-wheel/repertoar" ->
             Repertoire
 
-        "/swinging-wheel/arkiv" ->
+        "/arkiv" ->
             Archive
 
         _ ->
@@ -119,7 +119,7 @@ navView =
         , text " | "
         , a [ href "./swinging-wheel/repertoar" ] [ text "Repertoar" ]
         , text " | "
-        , a [ href "./swinging-wheel/arkiv" ] [ text "Arkiv" ]
+        , a [ href "/arkiv" ] [ text "Arkiv" ]
         ]
 
 eventCard : String -> String -> String -> String -> Html Msg
